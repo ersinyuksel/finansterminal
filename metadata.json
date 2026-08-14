@@ -1,0 +1,6 @@
+{
+  "name": "FinancePro Terminal",
+  "description": "Canlı piyasa takip terminali: Döviz kurları, altın, BIST 100, değerli madenler, döviz çevirici ve fiyat alarmları.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
