@@ -1,0 +1,61 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Stores user account profile details",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The user uid" },
+        "email": { "type": "string", "description": "User email address" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "favorites": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of favorite asset codes"
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "assetCode": { "type": "string" },
+              "assetName": { "type": "string" },
+              "targetPrice": { "type": "number" },
+              "condition": { "type": "string", "enum": ["above", "below"] },
+              "createdAt": { "type": "string" },
+              "status": { "type": "string", "enum": ["active", "triggered"] }
+            },
+            "required": ["id", "assetCode", "assetName", "targetPrice", "condition", "status"]
+          },
+          "description": "User custom price threshold alerts"
+        },
+        "portfolio": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "code": { "type": "string" },
+              "name": { "type": "string" },
+              "amount": { "type": "number" },
+              "buyPrice": { "type": "number" },
+              "buyDate": { "type": "string" },
+              "category": { "type": "string" }
+            },
+            "required": ["id", "code", "name", "amount", "buyPrice"]
+          },
+          "description": "User portfolio holding entries"
+        },
+        "updatedAt": { "type": "string", "description": "ISO timestamp of last update" }
+      },
+      "required": ["userId", "email"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User document containing personal favorites, alerts, and portfolio"
+    }
+  }
+}
